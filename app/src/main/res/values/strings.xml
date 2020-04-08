@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name" formatted="true">Advinha</string>
+    <string name="congrats" formatted="true">Parabéns!!</string>
+    <string name="errou" formatted="true">Você Errou a Palavra</string>
+    <string name="acertou" formatted="true" >Você Acertou a Palavra </string>
+    <string name="home" formatted="true">voltar para o inicio</string>
+    <string name="message" formatted="true">Você acertou todos os desafios</string>
+</resources>
