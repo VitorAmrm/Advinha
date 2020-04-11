@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "29.0.3"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -31,12 +31,13 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.squareup.retrofit2:retrofit:2.7.2'
-    implementation 'com.squareup.okhttp:okhttp:2.5.0'
+    implementation ('com.squareup.okhttp3:okhttp:3.12.8'){force = true}
+    implementation("com.squareup.okio:okio:2.5.0"){force = true}
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation "com.squareup.retrofit2:converter-gson:2.4.0"
     implementation "androidx.cardview:cardview:1.0.0"
     implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'com.squareup.picasso:picasso:2.71828'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

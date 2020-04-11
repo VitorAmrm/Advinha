@@ -25,9 +25,7 @@ import ufpb.luis.vitor.advinha.control.QueueChallenge;
 import ufpb.luis.vitor.advinha.model.ChallengeDTO;
 
 public class MainActivity extends Activity {
-    private ImageView challenge_image;
     private EditText tentativa;
-    private Button btn_confirma;
     private QueueChallenge fila_challenge = new QueueChallenge();
 
 
@@ -49,9 +47,9 @@ public class MainActivity extends Activity {
         if(!tmp.isEmpty()) {
             for (ChallengeDTO c : tmp) {fila_challenge.offer(c);}
         }
-            challenge_image = findViewById(R.id.challenge_image);
+        ImageView challenge_image = findViewById(R.id.challenge_image);
             tentativa = findViewById(R.id.tentativa);
-            btn_confirma = findViewById(R.id.btn_confirma);
+        Button btn_confirma = findViewById(R.id.btn_confirma);
 
             if(!fila_challenge.isEmpty()) {
                     loadImage(fila_challenge.peek().getImageUrl(), challenge_image);
@@ -83,8 +81,7 @@ public class MainActivity extends Activity {
     private void loadImage(String url, ImageView view) {
         Picasso.get()
                 .load(url)
-                .error(R.drawable.erroimage)
-                .centerInside()
+                //.error(R.drawable.erroimage)
                 .into(view);
     }
 

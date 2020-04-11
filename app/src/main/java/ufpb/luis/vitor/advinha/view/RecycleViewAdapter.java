@@ -68,8 +68,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     private void loadImage(String url, ImageView view) {
         Picasso.get()
                 .load(url)
-                .error(R.drawable.erroimage)
-                .centerInside()
+                //.error(R.drawable.erroimage)
                 .into(view);
     }
 
