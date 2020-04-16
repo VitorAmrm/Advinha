@@ -54,7 +54,7 @@ public class ContextChoose extends AppCompatActivity {
         }
 
     public void fillContextWithChallenges(LinkedList<ChallengeDTO> listaChallenge) {
-
+    try {
         for (ChallengeDTO c : listaChallenge) {
             if ((c.getId() >= 13) && (c.getId() <= 21)) {
                 listaContextos.get(4).addToList(c);
@@ -73,52 +73,59 @@ public class ContextChoose extends AppCompatActivity {
 
             }
         }
+    }catch(IndexOutOfBoundsException e){
+        pegarTodosContextos(this);
+    }
 
     }
 
 
     public void pegarTodosContextos(Context context) {
-        Call call = new RetrofitInitializer().contextService().pegarContextos();
-        call.enqueue(new Callback<LinkedList<ContextDTO>>() {
 
-            @Override
-            public void onResponse(@NotNull Call<LinkedList<ContextDTO>> call, @NotNull Response<LinkedList<ContextDTO>> response) {
-                if (response.code() == 200) {
-                    listaContextos = response.body();
-                    fillRecycleView(listaContextos);
-                    Toast.makeText(context, "Sucesso", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(context, "Algo deu Errado", Toast.LENGTH_LONG).show();
+            Call<LinkedList<ContextDTO>> call = new RetrofitInitializer().contextService().pegarContextos();
+            call.enqueue(new Callback<LinkedList<ContextDTO>>() {
+
+                @Override
+                public void onResponse(@NotNull Call<LinkedList<ContextDTO>> call, @NotNull Response<LinkedList<ContextDTO>> response) {
+                    if (response.code() == 200) {
+                        listaContextos = response.body();
+                        fillRecycleView(listaContextos);
+                        Toast.makeText(context, "Contextos Recuperados com Sucesso", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(context, "Erro ao tentar recuperar os contextos", Toast.LENGTH_LONG).show();
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(@NotNull Call<LinkedList<ContextDTO>> call, @NotNull Throwable t) {
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
+                @Override
+                public void onFailure(@NotNull Call<LinkedList<ContextDTO>> call, @NotNull Throwable t) {
+                    Toast.makeText(context, "Erro ao se comunicar com o sistema, tentando reconectar novamente", Toast.LENGTH_LONG).show();
+                    pegarTodosContextos(context);
+                }
+            });
 
-    }
+        }
+
 
     public void pegarTodosChallenges(Context context) {
-        Call call = new RetrofitInitializer().challengeService().pegarChallenges();
+        Call<LinkedList<ChallengeDTO>> call = new RetrofitInitializer().challengeService().pegarChallenges();
         call.enqueue(new Callback<LinkedList<ChallengeDTO>>() {
 
             @Override
             public void onResponse(@NotNull Call<LinkedList<ChallengeDTO>> call, @NotNull Response<LinkedList<ChallengeDTO>> response) {
-
                 if (response.code() == 200) {
-                    System.out.println(response.body());
+                    assert response.body() != null;
                     fillContextWithChallenges(response.body());
-                    Toast.makeText(context, "Sucesso", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(context, , Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(context, "Algo deu Errado", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Erro ao tentar recuperar os Desafios", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(@NotNull Call<LinkedList<ChallengeDTO>> call, @NotNull Throwable t) {
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Erro de comunicação com o serviço, tentando estabelecer nova conexão", Toast.LENGTH_LONG).show();
+                pegarTodosChallenges(context);
+
             }
         });
 
