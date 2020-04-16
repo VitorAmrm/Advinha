@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.LinkedList;
 
 import retrofit2.Call;
@@ -43,8 +45,13 @@ public class ContextChoose extends AppCompatActivity {
 
     public void fillRecycleView(LinkedList<ContextDTO> listaTemas) {
         rv.setLayoutManager(layoutManager);
-        rv.setAdapter(new RecycleViewAdapter(this, listaTemas));
-    }
+        try {
+            rv.setAdapter(new RecycleViewAdapter(this, listaTemas));
+        }catch(IndexOutOfBoundsException e){
+            pegarTodosContextos(this);
+            rv.setAdapter(new RecycleViewAdapter(this, listaTemas));
+        }
+        }
 
     public void fillContextWithChallenges(LinkedList<ChallengeDTO> listaChallenge) {
 
@@ -75,19 +82,19 @@ public class ContextChoose extends AppCompatActivity {
         call.enqueue(new Callback<LinkedList<ContextDTO>>() {
 
             @Override
-            public void onResponse(Call<LinkedList<ContextDTO>> call, Response<LinkedList<ContextDTO>> response) {
+            public void onResponse(@NotNull Call<LinkedList<ContextDTO>> call, @NotNull Response<LinkedList<ContextDTO>> response) {
                 if (response.code() == 200) {
                     listaContextos = response.body();
                     fillRecycleView(listaContextos);
-                    Toast.makeText(context, "Sucesso", Toast.LENGTH_LONG);
+                    Toast.makeText(context, "Sucesso", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(context, "Algo deu Errado", Toast.LENGTH_LONG);
+                    Toast.makeText(context, "Algo deu Errado", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<LinkedList<ContextDTO>> call, Throwable t) {
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_LONG);
+            public void onFailure(@NotNull Call<LinkedList<ContextDTO>> call, @NotNull Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -98,20 +105,20 @@ public class ContextChoose extends AppCompatActivity {
         call.enqueue(new Callback<LinkedList<ChallengeDTO>>() {
 
             @Override
-            public void onResponse(Call<LinkedList<ChallengeDTO>> call, Response<LinkedList<ChallengeDTO>> response) {
+            public void onResponse(@NotNull Call<LinkedList<ChallengeDTO>> call, @NotNull Response<LinkedList<ChallengeDTO>> response) {
 
                 if (response.code() == 200) {
                     System.out.println(response.body());
                     fillContextWithChallenges(response.body());
-                    Toast.makeText(context, "Sucesso", Toast.LENGTH_LONG);
+                    Toast.makeText(context, "Sucesso", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(context, "Algo deu Errado", Toast.LENGTH_LONG);
+                    Toast.makeText(context, "Algo deu Errado", Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<LinkedList<ChallengeDTO>> call, Throwable t) {
-                Toast.makeText(context, t.getMessage(), Toast.LENGTH_LONG);
+            public void onFailure(@NotNull Call<LinkedList<ChallengeDTO>> call, @NotNull Throwable t) {
+                Toast.makeText(context, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
 
