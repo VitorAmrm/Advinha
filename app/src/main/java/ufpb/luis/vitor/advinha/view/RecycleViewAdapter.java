@@ -7,23 +7,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
 import java.util.*;
+
+import retrofit2.Call;
 import ufpb.luis.vitor.advinha.R;
-import ufpb.luis.vitor.advinha.model.ChallengeDTO;
+import ufpb.luis.vitor.advinha.control.service.RetrofitInitializer;
+import ufpb.luis.vitor.advinha.model.Challenge;
 import ufpb.luis.vitor.advinha.model.ContextDTO;
 
+import static java.lang.Character.toUpperCase;
 
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.viewHolder> {
 
     private Context context ;
     private LinkedList<ContextDTO> listaTemas;
-    public static LinkedList<ChallengeDTO> tmp;
+    private ArrayList<Challenge> listaChallenge = new ArrayList<>();
 
-    public RecycleViewAdapter(Context context, LinkedList<ContextDTO> listaTemas) {
+
+    RecycleViewAdapter(Context context, LinkedList<ContextDTO> listaTemas) {
         this.context = context;
         this.listaTemas = listaTemas;
     }
@@ -37,25 +43,51 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         view = inflado.inflate(R.layout.card_view_layout,parent,false);
 
 
+
+
         return new viewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
-        holder.context_name.setText(listaTemas.get(position).getName());
+        final ufpb.luis.vitor.advinha.model.Context[] tmp = {new ufpb.luis.vitor.advinha.model.Context()};
+
+
+        holder.context_name.setText(capitalize(listaTemas.get(position).getName()));
 
         loadImage(listaTemas.get(position).getImageUrl(),holder.context_image);
 
         holder.itemView.setOnClickListener(v -> {
-            ArrayList<ChallengeDTO> tmp = TransformaLinkedEmArray(listaTemas.get(position).getListaChallenge());
+            Runnable r = new Runnable() {
+               private ufpb.luis.vitor.advinha.model.Context contexto;
 
+                @Override
+                public void run() {
+                    try {
+                        tmp[0] = pegarTodosChallengesDeUmContexto(context,listaTemas.get(position).getId());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                public ufpb.luis.vitor.advinha.model.Context getContexto(){
+                    return this.contexto;
+                }
+            };
+            Thread t = new Thread(r);
+            t.start();
+            System.out.println(position);
             Intent tela = new Intent();
-
             tela.setClass(this.context,MainActivity.class);
+            try {
+                t.join();
 
-            tela.putParcelableArrayListExtra("listinha",tmp);
-
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            tela.putParcelableArrayListExtra("listinha",tmp[0].getChallenges());
             context.startActivity(tela);
+
         });
     }
 
@@ -68,7 +100,8 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     private void loadImage(String url, ImageView view) {
         Picasso.get()
                 .load(url)
-                //.error(R.drawable.erroimage)
+                .centerCrop()
+                .resize(400,400)
                 .into(view);
     }
 
@@ -86,13 +119,42 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         }
     }
 
-    public static ArrayList<ChallengeDTO> TransformaLinkedEmArray(LinkedList<ChallengeDTO> lista){
-        ArrayList<ChallengeDTO> tmp = new ArrayList<>();
-        for(ChallengeDTO c :lista) {
+    public static ArrayList<Challenge> TransformaLinkedEmArray(LinkedList<Challenge> lista){
+        ArrayList<Challenge> tmp = new ArrayList<>();
+        for(Challenge c :lista) {
             tmp.add(c);
         }
         return tmp;
     }
 
+    public static String  capitalize(String txt) {
+     String f = txt.substring(0,1).toUpperCase();
+     return txt.replaceFirst(txt.substring(0,1),f);
+    }
+
+    public ufpb.luis.vitor.advinha.model.Context pegarTodosChallengesDeUmContexto (Context context, Long id) throws IOException {
+        Call<ufpb.luis.vitor.advinha.model.Context> call = new RetrofitInitializer().contextService().pegarChallengesDoContexto(id);
+        System.out.println("-------------------------TEMQUERESPEITRA----------------------------");
+        /*
+        call.enqueue(new Callback<ufpb.luis.vitor.advinha.model.Context>() {
+            @Override
+            public void onResponse(Call<ufpb.luis.vitor.advinha.model.Context> call, Response<ufpb.luis.vitor.advinha.model.Context> response) {
+                System.out.println("-------------------------Tonresponse----------------------------");
+                System.out.println(response.body());
+
+                //listaChallenge.addAll(response.body().getChallenges());
+            }
+
+            @Override
+            public void onFailure(Call<ufpb.luis.vitor.advinha.model.Context> call, Throwable t) {
+                System.out.println("-------------------------Tonfailure----------------------------");
+                System.out.println(t.getMessage());
+            }
+        });
+        */
+        ufpb.luis.vitor.advinha.model.Context r =  call.execute().body();
+        System.out.println("-------------------------RETURN-----------------------------");
+        return r;
+    }
 
 }

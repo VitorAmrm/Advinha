@@ -25,13 +25,8 @@ public class WinnerScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.winner_activity);
 
-        btn_home = findViewById(R.id.home);
-        imgTrofeu = findViewById(R.id.imageView);
-
-        Picasso.get()
-                .load(R.drawable.ic_trofeu)
-                .centerInside()
-                .into(imgTrofeu);
+        btn_home = findViewById(R.id.btn_home);
+        imgTrofeu = findViewById(R.id.trofeuimg);
 
         btn_home.setOnClickListener(v -> {
             Intent voltarHome = new Intent(this,ContextChoose.class);

@@ -17,12 +17,21 @@ public class ContextDTO implements Serializable {
 
     private String soundUrl;
 
-    private LinkedList<ChallengeDTO> listaChallenge = new LinkedList<ChallengeDTO>();
+    private LinkedList<Challenge> listaChallenge = new LinkedList<Challenge>();
 
 
     public ContextDTO() {}
 
-    public ContextDTO(Long id, String name, String imageUrl, String videoUrl, String soundUrl,LinkedList<ChallengeDTO> listaChallenge) {
+    public ContextDTO(long id, String name, String imageUrl, String videoUrl, String soundUrl) {
+        this.id = id;
+        this.name = name;
+        this.imageUrl = imageUrl;
+        this.videoUrl = videoUrl;
+        this.soundUrl = soundUrl;
+        this.listaChallenge = new LinkedList<>();
+    }
+
+    public ContextDTO(long id, String name, String imageUrl, String videoUrl, String soundUrl, LinkedList<Challenge> listaChallenge) {
         this.id = id;
         this.name = name;
         this.imageUrl = imageUrl;
@@ -84,15 +93,15 @@ public class ContextDTO implements Serializable {
 
 
 
-    public LinkedList<ChallengeDTO> getListaChallenge() {
+    public LinkedList<Challenge> getListaChallenge() {
         return listaChallenge;
     }
 
-    public void setListaChallenge(LinkedList<ChallengeDTO> listaChallenge) {
+    public void setListaChallenge(LinkedList<Challenge> listaChallenge) {
         this.listaChallenge = listaChallenge;
     }
 
-    public void addToList (ChallengeDTO c){
+    public void addToList (Challenge c){
         this.listaChallenge.add(c);
     }
 }

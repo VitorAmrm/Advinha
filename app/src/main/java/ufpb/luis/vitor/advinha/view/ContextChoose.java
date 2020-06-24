@@ -1,17 +1,25 @@
 package ufpb.luis.vitor.advinha.view;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
-
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.jetbrains.annotations.NotNull;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 
 import retrofit2.Call;
@@ -19,124 +27,123 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import ufpb.luis.vitor.advinha.R;
 import ufpb.luis.vitor.advinha.control.service.RetrofitInitializer;
-import ufpb.luis.vitor.advinha.model.ChallengeDTO;
 import ufpb.luis.vitor.advinha.model.ContextDTO;
+import ufpb.luis.vitor.advinha.utils.SaveContextGlobal;
+
 
 public class ContextChoose extends AppCompatActivity {
 
     private RecyclerView rv;
     private GridLayoutManager layoutManager;
-    private LinkedList<ContextDTO> listaContextos = new LinkedList<>();
+    private Toolbar toolbar;
+    private MediaPlayer media;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.context_choose_activity);
+
+        pegarContextoId(this, Long.valueOf(2));
+
         rv = findViewById(R.id.recycle_view);
-        layoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
 
-        pegarTodosContextos(this);
-        pegarTodosChallenges(this);
 
+        int orientation = getResources().getConfiguration().orientation;
+
+        if(orientation == Configuration.ORIENTATION_LANDSCAPE){
+            layoutManager = new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
+        }else {
+            layoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+        }
+
+        fillRecycleView(SaveContextGlobal.getInstance().getLista());
+
+
+
+        toolbar = findViewById(R.id.context_choose_toolbar);
+
+        toolbar.setOnMenuItemClickListener(item -> {
+
+            switch (item.getItemId()) {
+                case R.id.settings_menu:
+                    Intent tet = new Intent(this, SettingsActivity.class);
+                    startActivity(tet);
+                    break;
+                case R.id.addContext:
+                    dialogar();
+                    break;
+            }
+            return true;
+        });
+
+        media = MediaPlayer.create(this,R.raw.audio_seleciona_tema);
+        media.start();
 
     }
-
 
     public void fillRecycleView(LinkedList<ContextDTO> listaTemas) {
         rv.setLayoutManager(layoutManager);
-        try {
-            rv.setAdapter(new RecycleViewAdapter(this, listaTemas));
-        }catch(IndexOutOfBoundsException e){
-            pegarTodosContextos(this);
-            rv.setAdapter(new RecycleViewAdapter(this, listaTemas));
-        }
+        rv.setAdapter(new RecycleViewAdapter(this, listaTemas));
+
+
         }
 
-    public void fillContextWithChallenges(LinkedList<ChallengeDTO> listaChallenge) {
-    try {
-        for (ChallengeDTO c : listaChallenge) {
-            if ((c.getId() >= 13) && (c.getId() <= 21)) {
-                listaContextos.get(4).addToList(c);
-
-            } else if ((c.getId() >= 22) && (c.getId() <= 30)) {
-                listaContextos.get(0).addToList(c);
-
-            } else if ((c.getId() >= 31) && (c.getId() <= 35)) {
-                listaContextos.get(1).addToList(c);
-
-            } else if ((c.getId() >= 36) && (c.getId() <= 41)) {
-                listaContextos.get(2).addToList(c);
-
-            } else if ((c.getId() >= 42) && (c.getId() <= 45)) {
-                listaContextos.get(3).addToList(c);
-
-            }
-        }
-    }catch(IndexOutOfBoundsException e){
-        pegarTodosContextos(this);
-    }
-
-    }
-
-
-    public void pegarTodosContextos(Context context) {
-
-            Call<LinkedList<ContextDTO>> call = new RetrofitInitializer().contextService().pegarContextos();
-            call.enqueue(new Callback<LinkedList<ContextDTO>>() {
-
-                @Override
-                public void onResponse(@NotNull Call<LinkedList<ContextDTO>> call, @NotNull Response<LinkedList<ContextDTO>> response) {
-                    if (response.code() == 200) {
-                        listaContextos = response.body();
-                        fillRecycleView(listaContextos);
-                        Toast.makeText(context, "Contextos Recuperados com Sucesso", Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(context, "Erro ao tentar recuperar os contextos", Toast.LENGTH_LONG).show();
+    public void pegarContextoId(Context context,Long id) {
+        Call<ContextDTO> call = new RetrofitInitializer().contextService().pegarContextId(id);
+        call.enqueue(new Callback<ContextDTO>() {
+            @Override
+            public void onResponse(Call<ContextDTO> call, Response<ContextDTO> response) {
+                if(response.isSuccessful()) {
+                    boolean contextoIgual = false;
+                    for(ContextDTO c : SaveContextGlobal.getInstance().getLista()){
+                        if(c.getId().equals(response.body().getId())){
+                            contextoIgual = true;
+                            break;
+                        }
                     }
-                }
-
-                @Override
-                public void onFailure(@NotNull Call<LinkedList<ContextDTO>> call, @NotNull Throwable t) {
-                    Toast.makeText(context, "Erro ao se comunicar com o sistema, tentando reconectar novamente", Toast.LENGTH_LONG).show();
-                    pegarTodosContextos(context);
-                }
-            });
-
-        }
-
-
-    public void pegarTodosChallenges(Context context) {
-        Call<LinkedList<ChallengeDTO>> call = new RetrofitInitializer().challengeService().pegarChallenges();
-        call.enqueue(new Callback<LinkedList<ChallengeDTO>>() {
-
-            @Override
-            public void onResponse(@NotNull Call<LinkedList<ChallengeDTO>> call, @NotNull Response<LinkedList<ChallengeDTO>> response) {
-                if (response.code() == 200) {
-                    assert response.body() != null;
-                    fillContextWithChallenges(response.body());
-                    //Toast.makeText(context, , Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(context, "Erro ao tentar recuperar os Desafios", Toast.LENGTH_LONG).show();
+                    if(!contextoIgual) {
+                        SaveContextGlobal.getInstance().add(response.body());
+                        fillRecycleView(SaveContextGlobal.getInstance().getLista());
+                    }
+                }else{
+                    Toast.makeText(context, "ALGO OCORREU ERRADO, TENTE NOVAMENTE"+response.code(), Toast.LENGTH_SHORT).show();
                 }
             }
-
             @Override
-            public void onFailure(@NotNull Call<LinkedList<ChallengeDTO>> call, @NotNull Throwable t) {
-                Toast.makeText(context, "Erro de comunicação com o serviço, tentando estabelecer nova conexão", Toast.LENGTH_LONG).show();
-                pegarTodosChallenges(context);
-
+            public void onFailure(Call<ContextDTO> call, Throwable t) {
+                Toast.makeText(context,"FALHA NA CONEXÃO, TENTE NOVAMENTE",Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
+
+    public void dialogar () {
+        View view = getLayoutInflater().inflate(R.layout.alert_fragment,null);
+        EditText edt = view.findViewById(R.id.edtFragment);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(view);
+        AlertDialog alerta = builder.create();
+
+        view.findViewById(R.id.btnConfirm).setOnClickListener(v -> {
+            Long id = Long.valueOf(edt.getText().toString());
+            pegarContextoId(this,id);
+            alerta.dismiss();
+
+        });
+        alerta.show();
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        pegarTodosContextos(this);
-        pegarTodosChallenges(this);
+        fillRecycleView(SaveContextGlobal.getInstance().getLista());
+    }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        fillRecycleView(SaveContextGlobal.getInstance().getLista());
     }
 }

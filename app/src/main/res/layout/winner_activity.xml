@@ -1,62 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:screenOrientation="portrait"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:background="@drawable/rounded_shape_button"
-        android:gravity="center"
-        android:padding="5dp"
-        android:text="@string/home"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.937" />
-
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="350dp"
-        android:layout_height="303dp"
-        android:contentDescription="Trophy"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/trofeu" />
+        android:id="@+id/trofeuimg"
+        android:layout_width="500dp"
+        android:layout_height="500dp"
+        android:src="@drawable/ic_trofeu"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="50dp"
+        />
 
     <TextView
-        android:id="@+id/text_view_erros"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/message"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/home"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
         android:text="@string/congrats"
         android:textColor="@color/black"
-        android:textSize="60sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.192" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textSize="100sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="150dp"
+        />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_shape_button"
+        android:padding="20dp"
+        android:textSize="30sp"
+        android:text="@string/home"
+        android:textColor="@color/black"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="60dp"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

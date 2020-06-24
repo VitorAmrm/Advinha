@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/settings_screen_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/settings_title"
+            app:titleTextColor="@color/white"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:buttonGravity="center_vertical"
+            app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
+            app:titleMarginStart="85dp"
+            />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.cardview.widget.CardView
+        android:padding="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       android:layout_marginTop="70dp"
+        app:cardCornerRadius="30dp"
+        app:cardBackgroundColor="@color/gray"
+        app:cardElevation="1dp"
+        android:layout_gravity="center|top">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_cards_keyboard"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="20dp"/>
+        <RadioGroup
+            android:id="@+id/escolhas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            >
+            <RadioButton
+                android:id="@+id/primeiro_radio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Teclado personalizado"
+                android:textSize="30sp"
+                android:layout_marginTop="20dp"/>
+            <RadioButton
+                android:id="@+id/segundo_radio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Teclado do google"
+                android:textSize="30sp"
+                android:layout_marginTop="20dp"/>
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/salvar_alterações"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:layout_marginTop="200dp"
+            android:text="Salvar alterações"
+            android:textColor="@color/white"
+            android:padding="5dp"
+            android:textSize="20sp"
+            android:background="@drawable/rounded_shape_button"/>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

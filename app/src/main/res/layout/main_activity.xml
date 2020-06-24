@@ -1,49 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:screenOrientation="portrait"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary">
+
+        <androidx.appcompat.widget.Toolbar
+            app:menu="@menu/main_activity_menu"
+            android:id="@+id/main_activity_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:titleTextColor="@color/white"
+            app:title="@string/context_choose_title"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:buttonGravity="center_vertical"
+            app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
+            app:titleMarginStart="50dp"
+            />
+    </com.google.android.material.appbar.AppBarLayout>
+
     <ImageView
         android:id="@+id/challenge_image"
-        android:layout_width="308dp"
-        android:layout_height="356dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.115"
-        app:srcCompat="@drawable/ic_launcher_foreground"
-        tools:ignore="VectorDrawableCompat"
-        />
+        android:layout_width="740dp"
+        android:layout_height="550dp"
+        android:layout_gravity="top"
+        android:layout_marginTop="80dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp" />
 
     <EditText
         android:id="@+id/tentativa"
-        android:layout_width="311dp"
-        android:layout_height="68dp"
+        android:layout_width="740dp"
+        android:layout_height="120dp"
         android:background="@drawable/rounded_shape"
+        android:layout_gravity="center"
+        android:layout_marginTop="150dp"
+        android:autofillHints=""
+        android:inputType="textAutoComplete"
         android:gravity="center"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/challenge_image"
-        app:layout_constraintVertical_bias="0.212" />
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        />
+
+    <include
+        layout="@layout/keyboard_layout"
+        android:id="@+id/keyboard_layout"
+        android:layout_width="740dp"
+        android:layout_height="350dp"
+        android:layout_marginBottom="135dp"
+        android:layout_gravity="center|bottom" />
 
     <Button
         android:id="@+id/btn_confirma"
-        android:layout_width="128dp"
-        android:layout_height="75dp"
-        android:text="Confirmar"
-        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
         android:background="@drawable/rounded_shape_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tentativa" />
+        android:text="@string/confirm"
+        android:textColor="@color/white"
+        android:layout_gravity="center|bottom"
+        android:padding="20dp"
+        android:layout_marginBottom="50dp"
+        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

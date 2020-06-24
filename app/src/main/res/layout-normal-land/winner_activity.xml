@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/trofeuimg"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:src="@drawable/ic_trofeu"
+        android:layout_gravity="center|start"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/congrats"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:textSize="50sp"
+        android:layout_gravity="top|end"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="150dp"
+        android:layout_marginTop="100dp"
+        />
+
+    <Button
+        android:id="@+id/btn_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_shape_button"
+        android:padding="20dp"
+        android:textSize="15sp"
+        android:text="@string/home"
+        android:textColor="@color/white"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="110dp"
+
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="110dp" />
+    <TextView
+        android:id="@+id/text_acerto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:text="@string/texto_acertou_tantas"
+        android:textColor="@color/colorPrimary"
+        android:layout_gravity="center|end"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="40dp" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

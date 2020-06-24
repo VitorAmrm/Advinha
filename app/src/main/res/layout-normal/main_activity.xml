@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary">
+
+        <androidx.appcompat.widget.Toolbar
+            app:menu="@menu/main_activity_menu"
+            android:id="@+id/main_activity_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:titleTextColor="@color/white"
+            app:title="@string/context_choose_title"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:buttonGravity="center_vertical"
+            app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
+            app:titleMarginStart="40dp"
+            />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ImageView
+        android:id="@+id/challenge_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_gravity="top|center"
+        android:layout_marginTop="60dp" />
+
+    <EditText
+        android:id="@+id/tentativa"
+        android:layout_width="match_parent"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_height="68dp"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="380dp"
+        android:autofillHints=""
+        android:textAllCaps="true"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:background="@drawable/rounded_shape"
+        android:gravity="center"
+        android:inputType="textAutoComplete" />
+
+    <include layout="@layout/keyboard_layout"
+        android:id="@+id/keyboard_layout"
+        android:layout_gravity="center|bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="65dp"/>
+
+    <Button
+        android:id="@+id/btn_confirma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@drawable/rounded_shape_button"
+        android:text="@string/confirm"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="10dp"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

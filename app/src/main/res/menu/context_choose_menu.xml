@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/addContext"
+        android:title="Adicionar Contexto"
+        android:icon="@drawable/ic_add_white_24dp"
+        app:showAsAction="ifRoom"
+        />
+    <item android:id="@+id/settings_menu"
+        android:title="Configurações"
+        android:icon="@drawable/ic_settings_applications_white_24dp"
+        app:showAsAction="ifRoom"/>
+</menu>

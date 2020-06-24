@@ -1,8 +1,54 @@
 <resources>
-    <string name="app_name" formatted="true">Advinha</string>
+    <string name="app_name" formatted="true">Adivinha</string>
     <string name="congrats" formatted="true">Parabéns!!</string>
     <string name="errou" formatted="true">Você Errou a Palavra</string>
     <string name="acertou" formatted="true" >Você Acertou a Palavra </string>
     <string name="home" formatted="true">voltar para o inicio</string>
     <string name="message" formatted="true">Você acertou todos os desafios</string>
+    <string name="context_choose_title" formatted="true">Selecione Um Tema</string>
+    <string name="confirm" formatted="true">Confirmar</string>
+    <string name="settings_title" formatted="true">Configurações</string>
+    <string name="settings_cards_keyboard" formatted="true">Teclado</string>
+    <string name="texto_acertou_tantas" formatted="true">Você Acertou Todos Os Desafios</string>
+    <string name="loading" formatted="true">Carregando...</string>
+
+
+                <!---KEYBOARD KEYS-->
+    <string name="a" formatted="true"> a </string>
+    <string name="á" formatted="true"> á </string>
+    <string name="â" formatted="true"> â </string>
+    <string name="ã" formatted="true"> ã </string>
+    <string name="b" formatted="true"> b </string>
+    <string name="c" formatted="true"> c </string>
+    <string name="d" formatted="true"> d </string>
+    <string name="e" formatted="true"> e </string>
+    <string name="é" formatted="true"> é </string>
+    <string name="ê" formatted="true"> ê </string>
+    <string name="f" formatted="true"> f </string>
+    <string name="g" formatted="true"> g </string>
+    <string name="h" formatted="true"> h </string>
+    <string name="i" formatted="true"> i </string>
+    <string name="í" formatted="true"> í </string>
+    <string name="j" formatted="true"> j </string>
+    <string name="k" formatted="true"> k </string>
+    <string name="l" formatted="true"> l </string>
+    <string name="m" formatted="true"> m </string>
+    <string name="n" formatted="true"> n </string>
+    <string name="o" formatted="true"> o </string>
+    <string name="ó" formatted="true"> ó </string>
+    <string name="ô" formatted="true"> ô </string>
+    <string name="õ" formatted="true"> õ </string>
+    <string name="p" formatted="true"> p </string>
+    <string name="q" formatted="true"> q </string>
+    <string name="r" formatted="true"> r </string>
+    <string name="s" formatted="true"> s </string>
+    <string name="t" formatted="true"> t </string>
+    <string name="u" formatted="true"> u </string>
+    <string name="ú" formatted="true"> ú </string>
+    <string name="v" formatted="true"> v </string>
+    <string name="w" formatted="true"> w </string>
+    <string name="x" formatted="true"> x </string>
+    <string name="y" formatted="true"> y </string>
+    <string name="z" formatted="true"> z </string>
+    <string name="ç" formatted="true">ç</string>
 </resources>
