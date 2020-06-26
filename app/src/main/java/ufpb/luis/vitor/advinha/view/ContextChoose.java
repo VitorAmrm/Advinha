@@ -15,11 +15,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.LinkedList;
 
 import retrofit2.Call;
@@ -44,7 +39,7 @@ public class ContextChoose extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.context_choose_activity);
 
-        pegarContextoId(this, Long.valueOf(2));
+        pegarContextoId(this, Long.valueOf(11));
 
         rv = findViewById(R.id.recycle_view);
 

@@ -15,5 +15,5 @@ public class RetrofitInitializer {
 
 
     public ContextService contextService() { return retrofit.create(ContextService.class);}
-    public ChallengeService challengeService(){ return retrofit.create(ChallengeService.class);}
+    //public ChallengeService challengeService(){ return retrofit.create(ChallengeService.class);}
 }
