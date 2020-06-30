@@ -135,23 +135,6 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     public ufpb.luis.vitor.advinha.model.Context pegarTodosChallengesDeUmContexto (Context context, Long id) throws IOException {
         Call<ufpb.luis.vitor.advinha.model.Context> call = new RetrofitInitializer().contextService().pegarChallengesDoContexto(id);
         System.out.println("-------------------------TEMQUERESPEITRA----------------------------");
-        /*
-        call.enqueue(new Callback<ufpb.luis.vitor.advinha.model.Context>() {
-            @Override
-            public void onResponse(Call<ufpb.luis.vitor.advinha.model.Context> call, Response<ufpb.luis.vitor.advinha.model.Context> response) {
-                System.out.println("-------------------------Tonresponse----------------------------");
-                System.out.println(response.body());
-
-                //listaChallenge.addAll(response.body().getChallenges());
-            }
-
-            @Override
-            public void onFailure(Call<ufpb.luis.vitor.advinha.model.Context> call, Throwable t) {
-                System.out.println("-------------------------Tonfailure----------------------------");
-                System.out.println(t.getMessage());
-            }
-        });
-        */
         ufpb.luis.vitor.advinha.model.Context r =  call.execute().body();
         System.out.println("-------------------------RETURN-----------------------------");
         return r;

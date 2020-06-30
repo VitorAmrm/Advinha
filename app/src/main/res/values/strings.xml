@@ -11,6 +11,7 @@
     <string name="settings_cards_keyboard" formatted="true">Teclado</string>
     <string name="texto_acertou_tantas" formatted="true">Você Acertou Todos Os Desafios</string>
     <string name="loading" formatted="true">Carregando...</string>
+    <string name="main_title" formatted="true">Adivinhe a palavra</string>
 
 
                 <!---KEYBOARD KEYS-->

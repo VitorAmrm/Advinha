@@ -9,13 +9,13 @@ public class Context implements Serializable {
 
     private Long id;
     private String name;
-    private String creator;
+    private Creator creator;
     private String imageUrl;
     private String soundUrl;
     private String videoUrl;
     private ArrayList<Challenge> challenges;
 
-    public Context(Long id, String name, String creator, String imageUrl, String soundUrl, String videoUrl, ArrayList<Challenge> challenges) {
+    public Context(Long id, String name, Creator creator, String imageUrl, String soundUrl, String videoUrl, ArrayList<Challenge> challenges) {
         this.id = id;
         this.name = name;
         this.creator = creator;
@@ -37,7 +37,7 @@ public class Context implements Serializable {
         return name;
     }
 
-    public String getCreator() {
+    public Creator getCreator() {
         return creator;
     }
 

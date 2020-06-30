@@ -14,7 +14,7 @@
             app:menu="@menu/main_activity_menu"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="@string/context_choose_title"
+            app:title="@string/main_title"
             android:theme="@style/AppTheme.AppBarOverlay"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:buttonGravity="center_vertical"
