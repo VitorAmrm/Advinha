@@ -32,60 +32,6 @@
             android:onClick="textFill"/>
 
         <Button
-            android:id="@+id/btnAacute"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:padding="0dp"
-            android:text="@string/á"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:background="@drawable/rounded_shape_button"
-            app:backgroundTint="@color/colorPrimary"
-            app:iconPadding="8dp"
-            android:onClick="textFill"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-            android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
-
-        <Button
-            android:id="@+id/btnAcircum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:padding="0dp"
-            android:text="@string/â"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:background="@drawable/rounded_shape_button"
-            app:backgroundTint="@color/colorPrimary"
-            app:iconPadding="8dp"
-            android:onClick="textFill"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-            android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
-
-        <Button
-            android:id="@+id/btnAtilde"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:padding="0dp"
-            android:text="@string/ã"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:background="@drawable/rounded_shape_button"
-            app:backgroundTint="@color/colorPrimary"
-            app:iconPadding="8dp"
-            android:onClick="textFill"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-            android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
-
-        <Button
             android:id="@+id/btnB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -158,52 +104,6 @@
             android:onClick="textFill"/>
 
         <Button
-            android:id="@+id/btnEacute"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:padding="0dp"
-            android:text="@string/é"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:background="@drawable/rounded_shape_button"
-            app:backgroundTint="@color/colorPrimary"
-            app:iconPadding="8dp"
-            android:onClick="textFill"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-            android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btnEcircum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:padding="0dp"
-            android:text="@string/ê"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:background="@drawable/rounded_shape_button"
-            app:backgroundTint="@color/colorPrimary"
-            app:iconPadding="8dp"
-            android:onClick="textFill"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-            android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
-
-        <Button
             android:id="@+id/btnF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -274,23 +174,17 @@
             android:onClick="textFill"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
-        <Button
-            android:id="@+id/btnIacute"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:padding="0dp"
-            android:text="@string/í"
-            android:onClick="textFill"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:background="@drawable/rounded_shape_button"
-            app:backgroundTint="@color/colorPrimary"
-            app:iconPadding="8dp"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-            android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btnJ"
@@ -309,6 +203,7 @@
             app:iconPadding="8dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
+
         <Button
             android:id="@+id/btnK"
             android:layout_width="wrap_content"
@@ -326,6 +221,7 @@
             app:iconPadding="8dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
+
         <Button
             android:id="@+id/btnL"
             android:layout_width="wrap_content"
@@ -343,18 +239,6 @@
             app:iconPadding="8dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-
 
         <Button
             android:id="@+id/btnM"
@@ -403,59 +287,6 @@
             app:backgroundTint="@color/colorPrimary"
             android:padding="0dp"
             android:text="@string/o"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:iconPadding="8dp"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-            android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
-        <Button
-            android:id="@+id/btnOacute"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:onClick="textFill"
-            android:layout_weight="1"
-            android:background="@drawable/rounded_shape_button"
-            app:backgroundTint="@color/colorPrimary"
-            android:padding="0dp"
-            android:text="@string/ó"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:iconPadding="8dp"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-            android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
-
-        <Button
-            android:id="@+id/btnOcircum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:onClick="textFill"
-            android:background="@drawable/rounded_shape_button"
-            app:backgroundTint="@color/colorPrimary"
-            android:padding="0dp"
-            android:text="@string/ô"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:iconPadding="8dp"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-            android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
-
-        <Button
-            android:id="@+id/btnOtilde"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:onClick="textFill"
-            android:layout_weight="1"
-            android:background="@drawable/rounded_shape_button"
-            app:backgroundTint="@color/colorPrimary"
-            android:padding="0dp"
-            android:text="@string/õ"
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -517,6 +348,7 @@
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
 
+
     </LinearLayout>
 
     <LinearLayout
@@ -526,7 +358,6 @@
         android:layout_marginRight="10dp"
         android:layout_weight="1"
         android:orientation="horizontal">
-
         <Button
             android:id="@+id/btnS"
             android:layout_width="wrap_content"
@@ -577,24 +408,6 @@
             android:textColor="@color/white"
             android:background="@drawable/rounded_shape_button"
             app:backgroundTint="@color/colorPrimary"
-            app:iconPadding="8dp"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-            android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
-
-        <Button
-            android:id="@+id/btnUacute"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:onClick="textFill"
-            android:layout_weight="1"
-            android:background="@drawable/rounded_shape_button"
-            app:backgroundTint="@color/colorPrimary"
-            android:padding="0dp"
-            android:text="@string/ú"
-            android:textColor="@color/white"
-            android:textSize="24sp"
-            android:textStyle="bold"
             app:iconPadding="8dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
@@ -712,6 +525,197 @@
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
 
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnAacute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:padding="0dp"
+            android:text="@string/á"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_shape_button"
+            app:backgroundTint="@color/colorPrimary"
+            app:iconPadding="8dp"
+            android:onClick="textFill"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
+
+        <Button
+            android:id="@+id/btnAcircum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:padding="0dp"
+            android:text="@string/â"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_shape_button"
+            app:backgroundTint="@color/colorPrimary"
+            app:iconPadding="8dp"
+            android:onClick="textFill"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
+
+        <Button
+            android:id="@+id/btnAtilde"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:padding="0dp"
+            android:text="@string/ã"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_shape_button"
+            app:backgroundTint="@color/colorPrimary"
+            app:iconPadding="8dp"
+            android:onClick="textFill"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
+
+        <Button
+            android:id="@+id/btnUacute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:onClick="textFill"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_shape_button"
+            app:backgroundTint="@color/colorPrimary"
+            android:padding="0dp"
+            android:text="@string/ú"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:iconPadding="8dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
+
+
+
+
+
+        <Button
+            android:id="@+id/btnEacute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:padding="0dp"
+            android:text="@string/é"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_shape_button"
+            app:backgroundTint="@color/colorPrimary"
+            app:iconPadding="8dp"
+            android:onClick="textFill"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
+        <Button
+            android:id="@+id/btnEcircum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:padding="0dp"
+            android:text="@string/ê"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_shape_button"
+            app:backgroundTint="@color/colorPrimary"
+            app:iconPadding="8dp"
+            android:onClick="textFill"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
+        <Button
+            android:id="@+id/btnIacute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:padding="0dp"
+            android:text="@string/í"
+            android:onClick="textFill"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded_shape_button"
+            app:backgroundTint="@color/colorPrimary"
+            app:iconPadding="8dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
+        <Button
+            android:id="@+id/btnOacute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:onClick="textFill"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_shape_button"
+            app:backgroundTint="@color/colorPrimary"
+            android:padding="0dp"
+            android:text="@string/ó"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:iconPadding="8dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
+
+        <Button
+            android:id="@+id/btnOcircum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:onClick="textFill"
+            android:background="@drawable/rounded_shape_button"
+            app:backgroundTint="@color/colorPrimary"
+            android:padding="0dp"
+            android:text="@string/ô"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:iconPadding="8dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
+
+        <Button
+            android:id="@+id/btnOtilde"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:onClick="textFill"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_shape_button"
+            app:backgroundTint="@color/colorPrimary"
+            android:padding="0dp"
+            android:text="@string/õ"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:iconPadding="8dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+            android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
+
     </LinearLayout>
 
 
@@ -742,7 +746,6 @@
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
 
-
         <ImageButton
             android:id="@+id/btnSpace"
             android:layout_width="wrap_content"
@@ -762,8 +765,6 @@
             app:iconPadding="8dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             android:theme="@style/Widget.MaterialComponents.Button.TextButton"/>
-
-
 
         <ImageButton
             android:id="@+id/btnBackSpace"

@@ -16,12 +16,19 @@ import androidx.core.content.ContextCompat;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import ufpb.luis.vitor.advinha.Components.TypeWriter;
 import ufpb.luis.vitor.advinha.R;
+import ufpb.luis.vitor.advinha.control.service.RetrofitInitializer;
+import ufpb.luis.vitor.advinha.model.Creator;
 import ufpb.luis.vitor.advinha.utils.ConfigurationLogger;
+import ufpb.luis.vitor.advinha.utils.SaveContextGlobal;
 
 
 public class SplashActivity extends Activity {
@@ -32,7 +39,11 @@ public class SplashActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_activity);
-
+        try {
+            pegarUsuarios();
+        }catch (NullPointerException e){
+            Toast.makeText(this,"  ",Toast.LENGTH_SHORT).show();
+        }
 
         TypeWriter tx = findViewById(R.id.bounceText);
         tx.setCharacterDelay(300);
@@ -88,6 +99,24 @@ public class SplashActivity extends Activity {
         }
 
     }
+
+    private void pegarUsuarios () {
+        Call<LinkedList<Creator>> call = new RetrofitInitializer().contextService().findUsers();
+        call.enqueue(new Callback<LinkedList<Creator>>() {
+            @Override
+            public void onResponse(Call<LinkedList<Creator>> call, Response<LinkedList<Creator>> response) {
+                if(response.isSuccessful()){
+                    SaveContextGlobal.getInstance().getUsers().addAll(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LinkedList<Creator>> call, Throwable t) {
+
+            }
+        });
+    }
+
 
 }
 

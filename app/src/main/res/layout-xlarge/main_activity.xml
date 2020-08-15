@@ -24,6 +24,24 @@
             />
     </com.google.android.material.appbar.AppBarLayout>
 
+    <View android:id="@+id/emiter_top_left"
+        android:layout_gravity="top|start"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+       />
+    <View
+        android:id="@+id/emiter_center"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:layout_gravity="top|center"
+        />
+
+    <View android:id="@+id/emiter_top_right"
+        android:layout_gravity="top|end"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        />
+
     <ImageView
         android:id="@+id/challenge_image"
         android:layout_width="740dp"

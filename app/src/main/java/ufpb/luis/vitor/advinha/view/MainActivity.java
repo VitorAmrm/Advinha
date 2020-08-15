@@ -2,43 +2,30 @@ package ufpb.luis.vitor.advinha.view;
 
 
 import android.app.Activity;
-
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-
-
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.text.InputFilter;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
-
 import com.squareup.picasso.Picasso;
-
-
 import java.io.IOException;
 import java.util.*;
 
+import com.plattysoft.leonids.ParticleSystem;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import ufpb.luis.vitor.advinha.R;
-import ufpb.luis.vitor.advinha.control.service.RetrofitInitializer;
+
 import ufpb.luis.vitor.advinha.model.Challenge;
 import ufpb.luis.vitor.advinha.utils.QueueChallenge;
-
-import ufpb.luis.vitor.advinha.model.ChallengeDTO;
 import ufpb.luis.vitor.advinha.utils.ConfigurationLogger;
 
 public class MainActivity extends Activity  {
@@ -63,6 +50,7 @@ public class MainActivity extends Activity  {
         tentativa.setFilters(new InputFilter[] {new InputFilter.AllCaps()});
         ImageView challenge_image = findViewById(R.id.challenge_image);
         Button btn_confirma = findViewById(R.id.btn_confirma);
+        Vibrator vibro = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         //
 
 
@@ -87,17 +75,17 @@ public class MainActivity extends Activity  {
         });
             toolbar.setOnMenuItemClickListener(item -> {
              // 2º @param   ---> classe anonima
-             tts = new TextToSpeech(context, status -> {
-                 if(status == TextToSpeech.SUCCESS) {
-                     int result = tts.setLanguage(new Locale("pt_br","BR"));
+                tts = new TextToSpeech(context, status -> {
+                    if(status == TextToSpeech.SUCCESS) {
+                        int result = tts.setLanguage(Locale.getDefault());
 
-                     if(result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED){
-                         Toast.makeText(context,"LANG NOT SUPPORTED",Toast.LENGTH_SHORT).show();
-                     }else{
-                         tts.speak(fila_challenge.peek().getWord(),TextToSpeech.QUEUE_FLUSH,null);
+                        if(result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED){
+                            Toast.makeText(context,"LANG NOT SUPPORTED",Toast.LENGTH_SHORT).show();
+                        }else{
+                            tts.speak(fila_challenge.peek().getWord(),TextToSpeech.QUEUE_FLUSH,null);
 
-                     }
-                 }else{Toast.makeText(context,"nada errado",Toast.LENGTH_SHORT).show(); }});
+                        }
+                    }else{Toast.makeText(context,"TextToSpeech_Not_Sucess",Toast.LENGTH_SHORT).show(); }});
              return true;
          });
 
@@ -109,26 +97,66 @@ public class MainActivity extends Activity  {
 
         if(!fila_challenge.isEmpty()) {
             loadImage(fila_challenge.peek().getImageUrl(), challenge_image);
-            //classe anonima
             btn_confirma.setOnClickListener(v -> {
-                if (acertou(fila_challenge.peek().getWord(), tentativa.getText().toString())) {
-                    tentativa.setBackgroundResource(R.drawable.edit_text_correct);
-                    fila_challenge.poll();
-                    if (!fila_challenge.isEmpty()) {
-                        Intent enviar = new Intent(this, MainActivity.class);
-                        enviar.putParcelableArrayListExtra("listinha", TransformarQueueChallengeIntoArray(fila_challenge));
-                        startActivity(enviar);
-                    } else {
-                        Intent winnerScreen = new Intent(this, WinnerScreen.class);
-                        startActivity(winnerScreen);
-                    }
-                } else {
-                    tentativa.setBackgroundResource(R.drawable.edit_text_incorrect);
-                    fila_challenge.ReiniciarChallenge(fila_challenge.element());
-                    Intent enviar = new Intent(this, MainActivity.class);
-                    enviar.putParcelableArrayListExtra("listinha", (TransformarQueueChallengeIntoArray(fila_challenge)));
-                    startActivity(enviar);
-                }//else
+                    if(!tentativa.getText().toString().isEmpty()) {
+                        if (acertou(fila_challenge.peek().getWord(), tentativa.getText().toString())) {
+                            tentativa.setBackgroundResource(R.drawable.edit_text_correct);
+                            fila_challenge.poll();
+                            if (!fila_challenge.isEmpty()) {
+                                confetes();
+                                vibro.vibrate(400);
+                                new Timer().schedule(new TimerTask() {
+                                    @Override
+                                    public void run() {
+                                        Intent enviar = new Intent(context, MainActivity.class);
+                                        enviar.putParcelableArrayListExtra("listinha", TransformarQueueChallengeIntoArray(fila_challenge));
+                                        startActivity(enviar);
+                                    }
+                                }, 4000);
+
+                            } else {
+                                confetes();
+                                vibro.vibrate(400);
+                                new Timer().schedule(new TimerTask() {
+                                    @Override
+                                    public void run() {
+                                        Intent winnerScreen = new Intent(context, WinnerScreen.class);
+                                        startActivity(winnerScreen);
+                                    }
+                                }, 4000);
+
+                            }
+                        } else {
+                            tentativa.setBackgroundResource(R.drawable.edit_text_incorrect);
+                            vibro.vibrate(600);
+                            tts = new TextToSpeech(context, status -> {
+                                if (status == TextToSpeech.SUCCESS) {
+                                    int result = tts.setLanguage(Locale.getDefault());
+
+                                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                                        Toast.makeText(context, "LANG NOT SUPPORTED", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        tts.speak("A palavra deveria ser : " + fila_challenge.peek().getWord(), TextToSpeech.QUEUE_FLUSH, null);
+
+                                    }
+                                } else {
+                                    Toast.makeText(context, "TextToSpeech_Not_Sucess", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            new Timer().schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    fila_challenge.ReiniciarChallenge(fila_challenge.element());
+                                    Intent enviar = new Intent(context, MainActivity.class);
+                                    enviar.putParcelableArrayListExtra("listinha", (TransformarQueueChallengeIntoArray(fila_challenge)));
+                                    startActivity(enviar);
+                                }
+                            }, 4000);
+
+                        }
+                    }else{
+                        Toast.makeText(context,"Tente adivinhar a palavra",Toast.LENGTH_SHORT).show();
+                    }//else
             });//onClickView
         }
 
@@ -141,7 +169,7 @@ public class MainActivity extends Activity  {
     }
 
     private boolean acertou(String word, String tentativa) {
-        if (word.toLowerCase().equals(tentativa.toLowerCase())){
+        if (word.toLowerCase().trim().equals(tentativa.toLowerCase().trim())){
            return true;
         }
        return false;
@@ -338,7 +366,34 @@ public class MainActivity extends Activity  {
                     str = tentativa.getText()+"ú";
                     tentativa.setText(str, TextView.BufferType.EDITABLE);
                     break;
+                case R.id.btnCcedilha:
+                    str = tentativa.getText()+"ç";
+                    tentativa.setText(str, TextView.BufferType.EDITABLE);
+                    break;
             }
+    }
+
+    public void confetes(){
+        View viewLeft = findViewById(R.id.emiter_top_left);
+        View viewRight = findViewById(R.id.emiter_top_right);
+        View viewCenterRight = findViewById(R.id.emiter_center);
+
+        new ParticleSystem(this, 80, R.drawable.confeti2, 10000)
+                .setSpeedModuleAndAngleRange(0f, 0.1f, 0, 0)
+                .setRotationSpeed(144)
+                .setAcceleration(0.00005f, 90)
+                .emit(viewLeft, 8);
+
+        new ParticleSystem(this, 80, R.drawable.confeti3, 10000)
+                .setSpeedModuleAndAngleRange(0f, 0.1f, 180, 180)
+                .setRotationSpeed(144)
+                .setAcceleration(0.00005f, 90)
+                .emit(viewRight, 8);
+        new ParticleSystem(this, 80, R.drawable.confeti2, 10000)
+                .setSpeedModuleAndAngleRange(0f, 0.1f, 0, 180)
+                .setRotationSpeed(144)
+                .setAcceleration(0.00005f, 90)
+                .emit(viewCenterRight, 8);
     }
 
 
